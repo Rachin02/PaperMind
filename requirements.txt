@@ -1,0 +1,11 @@
+langchain
+langchain-openai
+fastapi
+streamlit
+langchain-astradb
+python-dotenv
+chromadb
+langchain-community
+python-multipart
+pypdf
+langchain-chroma

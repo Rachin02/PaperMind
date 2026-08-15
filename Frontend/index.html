@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Research Paper Intelligence Agent" />
+  <title>PaperMind — Research Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app-shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark"><span></span><span></span><span></span></div>
+        <div>
+          <strong>PaperMind</strong>
+          <small>Research Intelligence</small>
+        </div>
+      </div>
+
+      <button class="new-chat-btn" id="newChatBtn">
+        <span class="plus">+</span>
+        New conversation
+        <kbd>⌘ K</kbd>
+      </button>
+
+      <nav class="main-nav">
+        <a class="nav-item active" href="#">
+          <span class="nav-icon">⌂</span><span>Overview</span>
+        </a>
+        <a class="nav-item" href="#papers">
+          <span class="nav-icon">▱</span><span>My Papers</span>
+          <b id="navPaperCount">0</b>
+        </a>
+        <a class="nav-item" href="#chat">
+          <span class="nav-icon">◌</span><span>AI Researcher</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-section">
+        <div class="section-label">Library</div>
+        <div class="storage-card">
+          <div class="storage-top">
+            <span>Research library</span>
+            <span id="storageText">0 MB</span>
+          </div>
+          <div class="progress"><span id="storageProgress"></span></div>
+          <small>Organize papers and build your research knowledge base.</small>
+        </div>
+      </div>
+
+      <div class="recent">
+        <div class="section-label">Recent papers</div>
+        <div id="recentPapers" class="recent-list">
+          <div class="empty-mini">No papers uploaded yet.</div>
+        </div>
+      </div>
+
+      <div class="sidebar-bottom"></div>
+    </aside>
+
+    <main class="main-content">
+      <!-- Top bar -->
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu">☰</button>
+        <div class="breadcrumbs">
+          <span>Workspace</span><i>/</i><strong>Research Assistant</strong>
+        </div>
+      </header>
+
+      <section class="content">
+        <!-- Hero -->
+        <div class="hero">
+          <div>
+            <div class="eyebrow"><span class="pulse"></span> AI research workspace</div>
+            <h1>Think deeper.<br><em>Research faster.</em></h1>
+            <p>Upload your papers, explore their ideas, and have an intelligent conversation with your entire research library.</p>
+          </div>
+          <div class="hero-orbit">
+            <div class="orbit orbit-1"></div>
+            <div class="orbit orbit-2"></div>
+            <div class="orbit-core">✦</div>
+            <span class="orbit-dot d1"></span><span class="orbit-dot d2"></span><span class="orbit-dot d3"></span>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <section class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon paper-icon">▱</div>
+            <div><span class="stat-label">Papers uploaded</span><strong id="paperStat">0</strong></div>
+            <small class="trend">Your library</small>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon question-icon">◌</div>
+            <div><span class="stat-label">Questions asked</span><strong id="questionStat">0</strong></div>
+            <small class="trend">This session</small>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon insight-icon">✦</div>
+            <div><span class="stat-label">Insights generated</span><strong id="insightStat">0</strong></div>
+            <small class="trend">AI analyses</small>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon source-icon">⌁</div>
+            <div><span class="stat-label">Source pages</span><strong id="pageStat">0</strong></div>
+            <small class="trend">Indexed content</small>
+          </div>
+        </section>
+
+        <!-- Workspace -->
+        <section class="workspace-grid">
+          <div class="chat-panel" id="chat">
+            <div class="panel-header">
+              <div>
+                <div class="panel-title"><span class="status-dot"></span> Research Agent</div>
+                <small>Ask questions across your uploaded papers</small>
+              </div>
+              <button class="panel-menu">•••</button>
+            </div>
+
+            <div class="chat-body" id="chatBody">
+              <div class="welcome-message">
+                <div class="ai-avatar">✦</div>
+                <div>
+                  <span class="message-tag">PAPER MIND AI</span>
+                  <h3>What would you like to discover?</h3>
+                  <p>Upload one or more papers and ask me to explain concepts, compare studies, find research gaps, or trace evidence back to the source.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="suggestions">
+              <button class="suggestion" data-prompt="Summarize the key contributions of the uploaded papers.">Summarize key contributions <span>→</span></button>
+              <button class="suggestion" data-prompt="Explain the methodology used in the selected paper in simple terms.">Explain methodology <span>→</span></button>
+              <button class="suggestion" data-prompt="What are the major limitations and research gaps across these papers?">Find research gaps <span>→</span></button>
+            </div>
+
+            <form class="chat-input-wrap" id="chatForm">
+              <textarea id="chatInput" rows="1" placeholder="Ask anything about your research papers..."></textarea>
+              <div class="input-tools">
+                <button type="submit" class="send-btn">↑</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Actions panel -->
+          <aside class="actions-panel">
+            <div class="panel-header compact">
+              <div><div class="panel-title">Research actions</div><small>AI-powered paper analysis</small></div>
+            </div>
+
+            <div class="action-list">
+              <button class="action-card" data-prompt="Give me a concise executive summary of this paper, including its problem, approach, findings, and contribution.">
+                <span class="action-symbol summary">✦</span>
+                <div><strong>Summarize paper</strong><small>Executive overview in seconds</small></div><span>→</span>
+              </button>
+              <button class="action-card" data-prompt="Explain this paper as if you are teaching it to a graduate student. Define the important concepts and make the logic easy to follow.">
+                <span class="action-symbol explain">◇</span>
+                <div><strong>Explain paper</strong><small>Understand difficult concepts</small></div><span>→</span>
+              </button>
+              <button class="action-card" data-prompt="Extract and explain the complete methodology, including dataset, preprocessing, model architecture, training and evaluation.">
+                <span class="action-symbol method">⌁</span>
+                <div><strong>Methodology</strong><small>Pipeline, models & techniques</small></div><span>→</span>
+              </button>
+              <button class="action-card" data-prompt="Extract the key experimental results, metrics, tables, comparisons and best-performing methods from this paper.">
+                <span class="action-symbol result">↗</span>
+                <div><strong>Extract results</strong><small>Metrics & findings at a glance</small></div><span>→</span>
+              </button>
+              <button class="action-card" data-prompt="Identify the limitations, weaknesses, assumptions and unexplored areas in this research.">
+                <span class="action-symbol limit">△</span>
+                <div><strong>Find limitations</strong><small>Discover what is missing</small></div><span>→</span>
+              </button>
+            </div>
+          </aside>
+        </section>
+
+        <!-- Upload / Papers -->
+        <section class="library-section" id="papers">
+          <div class="section-heading">
+            <div><span class="eyebrow">YOUR LIBRARY</span><h2>Research papers</h2></div>
+            <button class="upload-small" id="uploadSmall">＋ Add papers</button>
+          </div>
+
+          <div class="upload-zone" id="uploadZone">
+            <input type="file" id="fileInput" accept=".pdf,application/pdf" multiple hidden>
+            <div class="upload-icon">↑</div>
+            <div>
+              <h3>Drop your research papers here</h3>
+              <p>Upload one or multiple PDF files. Your papers become searchable knowledge for the AI agent.</p>
+              <button type="button" class="browse-btn" id="browseBtn">Browse files</button>
+            </div>
+            <div class="upload-meta">
+              <span>PDF only</span><span>Multiple files</span><span>Secure workspace</span>
+            </div>
+          </div>
+
+          <div class="paper-grid" id="paperGrid">
+            <div class="paper-placeholder">
+              <div class="placeholder-icon">▱</div>
+              <strong>Your papers will appear here</strong>
+              <span>Upload a PDF to build your research library.</span>
+            </div>
+          </div>
+        </section>
+
+      </section>
+
+      <footer>
+        <span>PaperMind © 2026</span>
+        <span>Built for serious research · <b>AI-assisted, source-aware</b></span>
+      </footer>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"><span>✓</span><div><strong>Library updated</strong><small>Your papers are ready to explore.</small></div></div>
+  <script src="js/app.js"></script>
+</body>
+</html>
