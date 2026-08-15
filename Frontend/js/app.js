@@ -92,8 +92,40 @@ function addUserMessage(text) {
   `);
   body.scrollTop = body.scrollHeight;
 }
+function showThinkingIndicator() {
+  const body = $("#chatBody");
 
-function addAgentMessage(text) {
+  // Remove existing indicator if there is one
+  $("#aiThinking")?.remove();
+
+  body.insertAdjacentHTML("beforeend", `
+    <div class="ai-thinking" id="aiThinking">
+      <div class="mini-avatar">✦</div>
+
+      <div class="thinking-bubble">
+        <span class="thinking-text">Research Assistant is thinking</span>
+
+        <div class="thinking-dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  `);
+
+  body.scrollTop = body.scrollHeight;
+}
+function hideThinkingIndicator() {
+  const thinking = $("#aiThinking");
+
+  if (thinking) {
+    thinking.remove();
+  }
+}
+
+
+function addAgentMessage(text) {//-------------------------------------------
   const body = $("#chatBody");
   body.insertAdjacentHTML("beforeend", `
     <div class="chat-message">
@@ -115,8 +147,11 @@ async function sendPrompt(text) {
   save();
   render();
 
+  // Show AI thinking indicator
+  showThinkingIndicator();
+
   try {
-    const response = await fetch("http://127.0.0.1:8000/ask", {
+    const response = await fetch("http://16.192.149.225:8000/ask", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -134,11 +169,15 @@ async function sendPrompt(text) {
     const result = await response.json();
 
     console.log("FastAPI response:", result);
+    // Remove thinking indicator
+    hideThinkingIndicator();
 
     addAgentMessage(result.response);
 
   } catch (error) {
     console.error("Question error:", error);
+    // Remove thinking indicator
+    hideThinkingIndicator();
 
     addAgentMessage(
       "Sorry, I couldn't connect to the server."
@@ -208,7 +247,7 @@ async function processFiles(files) {
   try {
     showToast("Uploading...", `Sending ${pdfs.length} paper(s) to FastAPI`);
 
-    const response = await fetch("http://127.0.0.1:8000/upload", {
+    const response = await fetch("http://16.192.149.225:8000/upload", {
       method: "POST",
       body: formData
     });
@@ -246,7 +285,7 @@ $("#uploadZone").addEventListener("drop", e => processFiles(e.dataTransfer.files
 
 async function startNewConversation() {
   try {
-    const response = await fetch(`http://127.0.0.1:8000/delete_user_data?user_id=${userId}`, {
+    const response = await fetch(`http://16.192.149.225:8000/delete_user_data?user_id=${userId}`, {
       method: "DELETE"
     });
 
@@ -291,7 +330,7 @@ window.addEventListener("pagehide", () => {
   data.append("user_id", userId);
 
   navigator.sendBeacon(
-    "http://127.0.0.1:8000/cleanup",
+    "http://16.192.149.225:8000/cleanup",
     data
   );
 });
