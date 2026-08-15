@@ -151,7 +151,7 @@ async function sendPrompt(text) {
   showThinkingIndicator();
 
   try {
-    const response = await fetch("http://16.192.149.225:8000/ask", {
+    const response = await fetch("https://proc-rise-mag-processed.trycloudflare.com/ask", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -247,7 +247,7 @@ async function processFiles(files) {
   try {
     showToast("Uploading...", `Sending ${pdfs.length} paper(s) to FastAPI`);
 
-    const response = await fetch("http://16.192.149.225:8000/upload", {
+    const response = await fetch("https://proc-rise-mag-processed.trycloudflare.com/upload", {
       method: "POST",
       body: formData
     });
@@ -285,7 +285,7 @@ $("#uploadZone").addEventListener("drop", e => processFiles(e.dataTransfer.files
 
 async function startNewConversation() {
   try {
-    const response = await fetch(`http://16.192.149.225:8000/delete_user_data?user_id=${userId}`, {
+    const response = await fetch(`https://proc-rise-mag-processed.trycloudflare.com/delete_user_data?user_id=${userId}`, {
       method: "DELETE"
     });
 
@@ -330,7 +330,7 @@ window.addEventListener("pagehide", () => {
   data.append("user_id", userId);
 
   navigator.sendBeacon(
-    "http://16.192.149.225:8000/cleanup",
+    "https://proc-rise-mag-processed.trycloudflare.com/cleanup",
     data
   );
 });
