@@ -313,11 +313,56 @@ async function startNewConversation() {
   $("#chat").scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
+function closeMobileSidebar() {
+  $("#sidebar").classList.remove("open");
+  $("#sidebarBackdrop").classList.remove("visible");
+}
 
+function openMobileSidebar() {
+  $("#sidebar").classList.add("open");
+  $("#sidebarBackdrop").classList.add("visible");
+}
 
-$("#newChatBtn").addEventListener("click", startNewConversation);
+$("#newChatBtn").addEventListener("click", () => {
+  closeMobileSidebar();
+  startNewConversation();
+});
 
-$("#mobileMenu").addEventListener("click", () => $("#sidebar").classList.toggle("open"));
+$("#mobileMenu").addEventListener("click", e => {
+  e.stopPropagation();
+  const isOpen = $("#sidebar").classList.contains("open");
+  if (isOpen) {
+    closeMobileSidebar();
+  } else {
+    openMobileSidebar();
+  }
+});
+
+$("#sidebarBackdrop").addEventListener("click", closeMobileSidebar);
+
+$$(".nav-item").forEach(item => {
+  item.addEventListener("click", () => {
+    if (window.innerWidth <= 760) {
+      closeMobileSidebar();
+    }
+  });
+});
+
+document.addEventListener("click", e => {
+  if (window.innerWidth > 760) return;
+
+  const sidebar = $("#sidebar");
+  const menuButton = $("#mobileMenu");
+  const backdrop = $("#sidebarBackdrop");
+  const clickedInSidebar = sidebar.contains(e.target);
+  const clickedMenu = menuButton.contains(e.target);
+  const clickedBackdrop = backdrop.contains(e.target);
+  const clickedMainContent = $(".main-content").contains(e.target);
+
+  if (sidebar.classList.contains("open") && !clickedInSidebar && !clickedMenu && !clickedBackdrop && clickedMainContent) {
+    closeMobileSidebar();
+  }
+});
 
 document.addEventListener("keydown", e => {
   if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
