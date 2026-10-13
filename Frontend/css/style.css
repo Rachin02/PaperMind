@@ -160,3 +160,271 @@ footer{border-top:1px solid var(--border);padding:18px 42px;color:#4f535e;font-s
   footer{padding:15px;flex-direction:column;gap:5px}
   .top-actions .icon-btn:first-child,.upgrade-btn{display:none}
 }
+
+/* ========================================
+   PaperMind: AI Markdown Rendering
+   ======================================== */
+
+.chat-body {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.message-content {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.markdown-body {
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text-primary, #252a24);
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.markdown-body > :first-child {
+  margin-top: 0;
+}
+
+.markdown-body > :last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  line-height: 1.45;
+  color: inherit;
+  margin: 22px 0 10px;
+}
+
+.markdown-body h1 {
+  font-size: 1.65rem;
+}
+
+.markdown-body h2 {
+  font-size: 1.4rem;
+}
+
+.markdown-body h3 {
+  font-size: 1.15rem;
+}
+
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  font-size: 1rem;
+}
+
+.markdown-body p {
+  margin: 0 0 14px;
+}
+
+.markdown-body strong {
+  font-weight: 700;
+}
+
+.markdown-body em {
+  font-style: italic;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  margin: 10px 0 18px;
+  padding-left: 25px;
+}
+
+.markdown-body li {
+  margin: 0 0 8px;
+  padding-left: 3px;
+}
+
+.markdown-body li > ul,
+.markdown-body li > ol {
+  margin: 8px 0;
+}
+
+.markdown-body li > p {
+  margin-bottom: 6px;
+}
+
+.markdown-body blockquote {
+  margin: 14px 0;
+  padding: 12px 16px;
+  border-left: 3px solid #a4d66d;
+  background: rgba(164, 214, 109, 0.10);
+  border-radius: 0 8px 8px 0;
+}
+
+.markdown-body blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body hr {
+  border: 0;
+  border-top: 1px solid #e2e6df;
+  margin: 22px 0;
+}
+
+.markdown-body a {
+  color: #477a20;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.markdown-body a:hover {
+  color: #315716;
+}
+
+.markdown-body code {
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.88em;
+}
+
+.markdown-body :not(pre) > code {
+  padding: 3px 6px;
+  border-radius: 5px;
+  background: #edf1e9;
+  color: #304622;
+}
+
+.markdown-body pre {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 14px 0;
+  padding: 16px;
+  border-radius: 10px;
+  background: #192216;
+  color: #f3f5ef;
+  line-height: 1.65;
+  white-space: pre;
+}
+
+.markdown-body pre code {
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 13px;
+}
+
+.markdown-body table {
+  width: 100%;
+  margin: 16px 0;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.markdown-body th,
+.markdown-body td {
+  padding: 10px 12px;
+  border: 1px solid #dfe4da;
+  text-align: left;
+  vertical-align: top;
+}
+
+.markdown-body th {
+  background: #f1f4ed;
+  font-weight: 700;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.markdown-body input[type="checkbox"] {
+  margin-right: 7px;
+}
+
+.markdown-body .math-block {
+  overflow-x: auto;
+}
+
+.chat-message {
+  min-width: 0;
+  margin: 0 0 20px;
+}
+
+.chat-message .message-tag {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #668a46;
+}
+
+.chat-message .message-content {
+  width: 100%;
+  min-width: 0;
+}
+
+.chat-message.user-message .message-content {
+  padding: 12px 15px;
+  border-radius: 14px 14px 4px 14px;
+  background: #eef3e9;
+  white-space: pre-wrap;
+  line-height: 1.65;
+}
+
+.chat-message.ai-message .message-content {
+  padding: 0;
+}
+
+/* Upload feedback and paper cards */
+.paper-card {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.paper-card .paper-name {
+  overflow-wrap: anywhere;
+}
+
+.upload-zone.drag-over {
+  border-color: #9ccf63;
+  background: rgba(185, 255, 102, 0.08);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+@media (max-width: 640px) {
+  .markdown-body {
+    font-size: 13.5px;
+  }
+
+  .markdown-body h1 {
+    font-size: 1.4rem;
+  }
+
+  .markdown-body h2 {
+    font-size: 1.25rem;
+  }
+
+  .markdown-body ul,
+  .markdown-body ol {
+    padding-left: 21px;
+  }
+
+  .markdown-body table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .markdown-body pre {
+    padding: 12px;
+  }
+}
+

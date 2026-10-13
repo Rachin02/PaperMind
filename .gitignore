@@ -1,3 +1,4 @@
 research/
 .env
 Frontend/
+Dockerfile

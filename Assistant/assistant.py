@@ -94,7 +94,7 @@ Answer the user's question directly, accurately, and clearly. also make proper s
 
 
 
-llm = ChatOpenAI(model = "gpt-5-nano")
+llm = ChatOpenAI(model = "gpt-6-luna")
 embedding = OpenAIEmbeddings(model = "text-embedding-3-large")
 
 
